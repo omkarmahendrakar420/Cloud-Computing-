@@ -27,6 +27,7 @@ Both environments were provisioned with identical virtual hardware limits (Ubunt
 
 ### Official Lab Comparison Table Screenshot
 ![Hypervisor Performance Comparison](./screenshots/01-hypervisor-performance-comparison.png)
+
 *Figure: Empirical comparison table captured from the completed benchmark analysis.*
 
 ---
