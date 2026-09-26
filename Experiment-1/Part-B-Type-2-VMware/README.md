@@ -1,105 +1,191 @@
 # Part B: Performance Analysis Using Type-2 Hypervisor – VMware Workstation
 
-## 1. Creating the Virtual Machine
-VMware Workstation is a hosted (Type-2) hypervisor installed and executed directly on top of a host operating system (Windows/Linux).
+## 1. Launching VMware Workstation
+VMware Workstation is a Type-2 (hosted) hypervisor running as an application on top of the host operating system (Windows 11).
 
-1. Launch **VMware Workstation**.
-2. Select **Create a New Virtual Machine**.
-3. Choose **Typical (recommended)** configuration and click **Next**.
-4. Select **Installer disc image file (iso)**, browse to and select the Ubuntu ISO file (e.g., `ubuntu-22.04.iso`), and click **Next**.
-5. Specify the guest operating system as **Linux** and version as **Ubuntu 64-bit**.
-6. Set the virtual machine name as `CC-Experiment1-Type2` and choose an appropriate disk storage path.
-7. Set maximum disk size to **20 GB** and choose **Store virtual disk as a single file** (or default split format).
-8. Click **Customize Hardware** and configure the allocated resources:
-   - **Memory:** `2048 MB` (2 GB RAM)
-   - **Processors:** `1` processor, `2` cores per processor (Total: `2 vCPU`)
-   - **Hard Disk:** `20 GB`
-   - **Network Adapter:** `NAT` (enables internet access through host networking)
-9. Verify the hardware settings and click **Finish** to complete creation.
+![Launching VMware Workstation](./screenshots/01-vmware-launch.png)
+*Step 1: VMware Workstation Pro home screen.*
 
 ---
 
-## 2. Installing Ubuntu Operating System
-1. Select `CC-Experiment1-Type2` from the VMware Workstation library.
-2. Click **Power on this virtual machine**.
-3. The Ubuntu installer interface will launch inside the VMware console window.
-4. Complete the Ubuntu installation wizard:
-   - Select system language and keyboard layout.
-   - Choose normal installation.
-   - Select **Erase disk and install Ubuntu** (applies exclusively to the 20 GB virtual disk allocated to the VM).
-   - Set geographical timezone and create standard user credentials.
-   - Wait for packages to install and click **Restart Now**.
+## 2. Virtual Machine Creation Wizard
+
+### Step 2.1: Selecting Configuration Type
+Select **Typical (recommended)** to configure the virtual machine in standard steps.
+
+![Selecting Typical Configuration](./screenshots/02-vmware-wizard-typical.png)
+*Step 2.1: Selecting Typical VM creation wizard.*
+
+### Step 2.2: Selecting Installation Media (ISO)
+Browse and select the Ubuntu 64-bit ISO image:
+
+![Selecting Ubuntu ISO](./screenshots/03-vmware-select-iso.png)
+*Step 2.2: Selecting Ubuntu 24.04 installer ISO image.*
+
+### Step 2.3: Easy Install Information
+Enter Linux personalization details (Full name, User name, Password):
+
+![Easy Install Information](./screenshots/04-vmware-easy-install-info.png)
+*Step 2.3: Configuring user credentials.*
+
+### Step 2.4: Naming the Virtual Machine
+Set the VM name as `Ubuntu 64-bit` and specify the disk storage path:
+
+![Naming the Virtual Machine](./screenshots/05-vmware-name-vm.png)
+*Step 2.4: Specifying the VM name and storage location.*
+
+### Step 2.5: Specifying Virtual Disk Capacity
+Allocate a **20.0 GB** maximum virtual disk size:
+
+![Specifying Disk Capacity](./screenshots/06-vmware-specify-disk.png)
+*Step 2.5: Configuring 20 GB virtual disk capacity.*
+
+### Step 2.6: Hardware Configuration Summary
+Review the configured parameters (20 GB Disk, 2 CPU Cores, NAT Adapter):
+
+![Hardware Configuration Summary](./screenshots/07-vmware-vm-configuration.png)
+*Step 2.6: Ready to create VM configuration summary.*
 
 ---
 
-## 3. Verifying System Configuration
-Open the Ubuntu terminal inside the VMware guest OS and run the verification commands:
+## 3. Powering On and Installing Ubuntu
 
+### Step 3.1: Powering On the Virtual Machine
+Power on the virtual machine from the VMware library:
+
+![Powering On VM](./screenshots/08-vmware-booting.png)
+*Step 3.1: VM initial boot screen in VMware Workstation.*
+
+### Step 3.2: Ubuntu Installer Setup
+Follow the Ubuntu OS installation wizard:
+
+| Step | Description | Screenshot |
+| :---: | :--- | :---: |
+| **Welcome** | Language & Welcome selection | ![Welcome](./screenshots/09-vmware-ubuntu-welcome.png) |
+| **Accessibility** | Accessibility preferences | ![Accessibility](./screenshots/10-vmware-ubuntu-accessibility.png) |
+| **Keyboard** | Keyboard layout configuration | ![Keyboard](./screenshots/11-vmware-ubuntu-keyboard.png) |
+| **Install Type** | Interactive installation option | ![Install Type](./screenshots/12-vmware-ubuntu-install-type.png) |
+| **Applications** | Default application selection | ![Apps](./screenshots/13-vmware-ubuntu-apps-selection.png) |
+| **Drivers** | Proprietary software & driver configuration | ![Drivers](./screenshots/14-vmware-ubuntu-software-drivers.png) |
+| **Disk Setup** | Virtual disk partitioning (`sda`) | ![Disk Setup](./screenshots/15-vmware-ubuntu-disk-partitioning.png) |
+| **User Account** | User account and hostname setup | ![User Account](./screenshots/16-vmware-ubuntu-user-account.png) |
+| **Timezone** | Geographical timezone selection | ![Timezone](./screenshots/17-vmware-ubuntu-timezone.png) |
+| **Review** | Reviewing configuration choices | ![Review](./screenshots/18-vmware-ubuntu-ready-to-install.png) |
+| **Installing** | Base system package installation | ![Installing](./screenshots/19-vmware-ubuntu-installing-system.png) |
+| **Copying** | Copying files to virtual disk | ![Copying](./screenshots/20-vmware-ubuntu-copying-files.png) |
+| **Complete** | Installation completion confirmation | ![Complete](./screenshots/21-vmware-ubuntu-install-complete.png) |
+| **Summary** | Partition and configuration review | ![Summary](./screenshots/22-vmware-ubuntu-review-choices.png) |
+| **Slides** | Ubuntu features overview slide | ![Slides](./screenshots/23-vmware-ubuntu-install-slides.png) |
+
+---
+
+## 4. System Configuration & Resource Verification
+After installation, open the Ubuntu terminal to verify allocated hardware resources:
+
+### 4.1 System Hostname & OS Details
 ```bash
-# Verify OS details, hostname, and kernel architecture
 hostnamectl
+```
+![Hostnamectl Output](./screenshots/24-vmware-ubuntu-running-hostnamectl.png)
+*Step 4.1: `hostnamectl` showing Ubuntu 24.04 LTS and VMware Virtual Platform.*
 
-# Verify CPU allocation (2 vCPU cores)
+### 4.2 CPU Architecture & Core Allocation
+```bash
 lscpu
+```
+![lscpu Output](./screenshots/25-vmware-lscpu.png)
+*Step 4.2: `lscpu` verifying 2 vCPU on AMD Ryzen 5 5600H processor.*
 
-# Verify RAM memory allocation (~2.0 GB)
+### 4.3 Memory (RAM) Allocation
+```bash
 free -h
+```
+![free -h Output](./screenshots/26-vmware-free-memory.png)
+*Step 4.3: `free -h` verifying system memory allocation and swap space.*
 
-# Verify disk partition allocation (20 GB virtual disk)
+### 4.4 Virtual Disk Space
+```bash
 df -h
+```
+![df -h Output](./screenshots/27-vmware-disk-df.png)
+*Step 4.4: `df -h` inspecting virtual disk partitions and filesystem usage.*
 
-# Monitor system processes and live CPU load
+### 4.5 Live System Process Monitoring
+```bash
 top
 ```
+![top Output](./screenshots/28-vmware-top-monitoring.png)
+*Step 4.5: `top` displaying real-time CPU task execution and load average.*
 
 ---
 
-## 4. Installing Sysbench
-Update package repositories and install Sysbench in the Ubuntu VM:
+## 5. Installing Sysbench & Running CPU Benchmark
 
+### 5.1 Updating Package Index
 ```bash
 sudo apt update
+```
+![Package Update](./screenshots/29-vmware-apt-update.png)
+*Step 5.1: Updating Ubuntu package repository indexes.*
+
+### 5.2 Installing Sysbench
+```bash
 sudo apt install sysbench -y
+```
+![Install Sysbench](./screenshots/30-vmware-apt-install-sysbench.png)
+*Step 5.2: Installing Sysbench benchmarking package.*
+
+### 5.3 Verifying Sysbench Version
+```bash
 sysbench --version
 ```
+![Verify Version](./screenshots/31-vmware-sysbench-version.png)
+*Step 5.3: Sysbench version confirmation (`sysbench 1.0.20`).*
 
----
-
-## 5. Running CPU Performance Benchmark
-Execute the CPU benchmark test with identical parameters as used in Part A:
+### 5.4 Executing CPU Performance Benchmark
+Execute the CPU benchmark test with prime limit 20,000:
 
 ```bash
 sysbench cpu --cpu-max-prime=20000 run
 ```
 
-Record the generated performance metrics directly from the terminal output:
-- Total execution time (s)
-- Total number of events
-- Events per second (throughput)
-- Latency statistics (min, avg, max)
+![Sysbench Benchmark Result](./screenshots/32-vmware-sysbench-result.png)
+*Step 5.4: Terminal output of `sysbench cpu --cpu-max-prime=20000 run` on VMware Workstation.*
+
+### Measured Sysbench Performance Data (VMware Workstation):
+- **Total Execution Time:** `10.0006 s` (or `10.0012 s` in terminal run)
+- **Total Number of Events:** `7,077` (or `8,012` in terminal run)
+- **Events per Second (Throughput):** `707.43` (or `800.97` in terminal run)
+- **Minimum Latency:** `1.17 ms`
+- **Average Latency:** `1.41 ms` (or `1.25 ms` in terminal run)
+- **Maximum Latency:** `3.90 ms`
+- **95th Percentile Latency:** `1.37 ms`
 
 ---
 
-## 6. Resource and Hardware Monitoring
-- Open **VM -> Settings** in VMware Workstation to inspect allocated virtual resources (Processors, Memory, Hard Disk, Network Adapter).
-- Monitor host-level and guest-level resource consumption using `top` and `free -h` inside the guest OS during benchmark execution.
+## 6. VMware Virtual Machine Settings Inspection
+Access **VM -> Settings** to verify configured virtual hardware devices:
+
+![VMware Settings](./screenshots/33-vmware-virtual-machine-settings.png)
+*Step 6: VMware Workstation Virtual Machine Settings showing Memory, Processors (2), Hard Disk, and NAT adapter.*
 
 ---
 
-## 7. Implementation Evidence (Screenshots)
+## 7. Observation Table – Type-2 Hypervisor (VMware Workstation)
 
-### Screenshot 1: VMware VM Configuration
-![VMware VM Configuration](./screenshots/01-vmware-vm-configuration.png)
-*VMware VM Configuration: Hardware configuration window showing 2 vCPU, 2 GB RAM, 20 GB hard disk, and NAT network adapter.*
-
-### Screenshot 2: VMware VM Running
-![VMware VM Running](./screenshots/02-vmware-vm-running.png)
-*VMware VM Running: Ubuntu virtual machine powered on and operational in VMware Workstation.*
-
-### Screenshot 3: VMware Ubuntu System Configuration
-![VMware Ubuntu System Configuration](./screenshots/03-vmware-system-configuration.png)
-*VMware Ubuntu System Configuration: Terminal output showing verified system resources with `hostnamectl`, `lscpu`, and `free -h`.*
-
-### Screenshot 4: VMware Sysbench CPU Benchmark Result
-![VMware Sysbench CPU Benchmark Result](./screenshots/04-vmware-sysbench-result.png)
-*VMware Sysbench CPU Benchmark Result: Terminal output displaying CPU benchmark metrics and execution statistics on VMware Workstation.*
+| Parameter | Experimental Value |
+| :--- | :--- |
+| **Hypervisor** | VMware Workstation Pro |
+| **Hypervisor Architecture** | Type-2 (Hosted) |
+| **Host Operating System** | Windows 11 (64-bit) |
+| **Guest Operating System** | Ubuntu 24.04 LTS |
+| **CPU Allocation** | 2 vCPU (AMD Ryzen 5 5600H) |
+| **Memory Allocation** | 2 GB / 4 GB |
+| **Disk Allocation** | 20 GB Virtual Disk |
+| **Total Execution Time** | **10.0006 s** |
+| **Total Events Processed** | **7,077** |
+| **Events per Second (Throughput)** | **707.43** |
+| **Minimum Latency** | **1.17 ms** |
+| **Average Latency** | **1.41 ms** |
+| **Maximum Latency** | **3.90 ms** |
+| **95th Percentile Latency** | **1.37 ms** |
