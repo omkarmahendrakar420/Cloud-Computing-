@@ -1,4 +1,4 @@
-# Performance Analysis of Type-1 and Type-2 Hypervisors
+# Cloud Computing Laboratory
 
 [![Course](https://img.shields.io/badge/Course-Cloud%20Computing%20Laboratory-blue.svg)](#)
 [![Hypervisors](https://img.shields.io/badge/Hypervisors-Proxmox%20VE%20%7C%20VMware%20Workstation-orange.svg)](#)
@@ -6,6 +6,13 @@
 [![Status](https://img.shields.io/badge/Status-Completed-brightgreen.svg)](#)
 
 ---
+
+## 📚 Experiments Index
+- **[Experiment 1: Performance Analysis of Type-1 and Type-2 Hypervisors](./Experiment-1/README.md)**
+
+---
+
+# Experiment 1: Performance Analysis of Type-1 and Type-2 Hypervisors
 
 ## Table of Contents
 1. [Experiment Overview & Objective](#1-experiment-overview--objective)
@@ -82,7 +89,7 @@ Proxmox VE is deployed directly on physical bare-metal server hardware and acces
 - **URL:** `https://10.11.0.252:8006`
 - **Port:** `8006`
 
-![Step 1: Accessing Proxmox Web Interface](./Part-A-Type-1-Proxmox/screenshots/01-proxmox-access-url.png)
+![Step 1: Accessing Proxmox Web Interface](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/01-proxmox-access-url.png)
 *Step 1: Navigating to the Proxmox VE Web Interface in Google Chrome.*
 
 ---
@@ -92,7 +99,7 @@ Authenticate into the Proxmox server node using assigned credentials:
 - **Username:** `root`
 - **Realm:** `Linux PAM standard authentication`
 
-![Step 2: Proxmox VE Login Page](./Part-A-Type-1-Proxmox/screenshots/02-proxmox-login.png)
+![Step 2: Proxmox VE Login Page](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/02-proxmox-login.png)
 *Step 2: Proxmox VE authentication dialog.*
 
 ---
@@ -100,7 +107,7 @@ Authenticate into the Proxmox server node using assigned credentials:
 ## 3. Understanding the Proxmox VE Interface & Dashboard
 The Proxmox dashboard displays the centralized Datacenter hierarchy, server node (`admin1-HP-Pro-Tower-280-G9-E-PCI-Desktop-PC`), storage pools, networks, and active virtual machines.
 
-![Step 3: Proxmox VE Dashboard](./Part-A-Type-1-Proxmox/screenshots/03-proxmox-dashboard.png)
+![Step 3: Proxmox VE Dashboard](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/03-proxmox-dashboard.png)
 *Step 3: Proxmox VE Datacenter inventory overview.*
 
 ---
@@ -113,7 +120,7 @@ Configure the node, unique virtual machine ID, and VM name:
 - **VM ID:** `101` / `117`
 - **Name:** `TYPE1` / `b1-t1`
 
-![Step 4.1: Create VM - General](./Part-A-Type-1-Proxmox/screenshots/04-proxmox-create-vm-general.png)
+![Step 4.1: Create VM - General](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/04-proxmox-create-vm-general.png)
 *Step 4.1: Configuring VM General settings.*
 
 ### Step 4.2: Operating System (OS) Configuration
@@ -122,7 +129,7 @@ Configure the node, unique virtual machine ID, and VM name:
 - **ISO Image:** `ubuntu-22.04.5-desktop-amd64.iso` / `ubuntu-24.04`
 - **Guest OS Type:** Linux (`6.x - 2.6 Kernel`)
 
-![Step 4.2: Create VM - OS](./Part-A-Type-1-Proxmox/screenshots/05-proxmox-create-vm-os.png)
+![Step 4.2: Create VM - OS](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/05-proxmox-create-vm-os.png)
 *Step 4.2: Selecting the Ubuntu ISO image.*
 
 ### Step 4.3: System Configuration
@@ -131,7 +138,7 @@ Configure the node, unique virtual machine ID, and VM name:
 - **Firmware / BIOS:** Default (`SeaBIOS`)
 - **SCSI Controller:** `VirtIO SCSI single`
 
-![Step 4.3: Create VM - System](./Part-A-Type-1-Proxmox/screenshots/06-proxmox-create-vm-system.png)
+![Step 4.3: Create VM - System](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/06-proxmox-create-vm-system.png)
 *Step 4.3: Configuring System hardware platform.*
 
 ### Step 4.4: Virtual Disk Configuration
@@ -141,7 +148,7 @@ Configure the node, unique virtual machine ID, and VM name:
 - **Cache:** Default (No cache)
 - **IO Thread:** Enabled
 
-![Step 4.4: Create VM - Disks](./Part-A-Type-1-Proxmox/screenshots/07-proxmox-create-vm-disks.png)
+![Step 4.4: Create VM - Disks](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/07-proxmox-create-vm-disks.png)
 *Step 4.4: Allocating 20 GB SCSI virtual disk.*
 
 ### Step 4.5: CPU Processor Configuration
@@ -149,13 +156,13 @@ Configure the node, unique virtual machine ID, and VM name:
 - **Cores:** `2` (Total vCPU = `2`)
 - **Type:** `x86-64-v2-AES`
 
-![Step 4.5: Create VM - CPU](./Part-A-Type-1-Proxmox/screenshots/08-proxmox-create-vm-cpu.png)
+![Step 4.5: Create VM - CPU](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/08-proxmox-create-vm-cpu.png)
 *Step 4.5: Allocating 2 virtual CPU cores.*
 
 ### Step 4.6: Memory Resource Configuration
 - **Memory:** `2048 MiB` (2 GB RAM)
 
-![Step 4.6: Create VM - Memory](./Part-A-Type-1-Proxmox/screenshots/09-proxmox-create-vm-memory.png)
+![Step 4.6: Create VM - Memory](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/09-proxmox-create-vm-memory.png)
 *Step 4.6: Allocating 2048 MiB (2 GB) RAM.*
 
 ### Step 4.7: Network Interface Configuration
@@ -163,13 +170,13 @@ Configure the node, unique virtual machine ID, and VM name:
 - **Model:** `VirtIO (paravirtualized)`
 - **Firewall:** Enabled
 
-![Step 4.7: Create VM - Network](./Part-A-Type-1-Proxmox/screenshots/10-proxmox-create-vm-network.png)
+![Step 4.7: Create VM - Network](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/10-proxmox-create-vm-network.png)
 *Step 4.7: Configuring VirtIO network bridge.*
 
 ### Step 4.8: Confirming Virtual Machine Configuration
 Review all configured hardware parameters before final provisioning:
 
-![Step 4.8: Create VM - Confirm](./Part-A-Type-1-Proxmox/screenshots/11-proxmox-create-vm-confirm.png)
+![Step 4.8: Create VM - Confirm](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/11-proxmox-create-vm-confirm.png)
 *Step 4.8: Final VM configuration confirmation summary.*
 
 ---
@@ -177,7 +184,7 @@ Review all configured hardware parameters before final provisioning:
 ## 5. Starting and Verifying the Virtual Machine
 Power on the virtual machine and verify that its status changes to **Running**:
 
-![Step 5: Proxmox VM Running](./Part-A-Type-1-Proxmox/screenshots/12-proxmox-vm-running.png)
+![Step 5: Proxmox VM Running](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/12-proxmox-vm-running.png)
 *Step 5: Virtual Machine running actively in Proxmox Datacenter.*
 
 ---
@@ -189,7 +196,7 @@ Access the guest OS console via noVNC to verify system hostname and operating sy
 hostnamectl
 ```
 
-![Step 6: Ubuntu Console inside Proxmox](./Part-A-Type-1-Proxmox/screenshots/13-proxmox-ubuntu-console.png)
+![Step 6: Ubuntu Console inside Proxmox](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/13-proxmox-ubuntu-console.png)
 *Step 6: Output of `hostnamectl` in Ubuntu guest console inside Proxmox.*
 
 ---
@@ -205,7 +212,7 @@ lscpu
 free -h
 ```
 
-![Step 7: System Configuration Verification](./Part-A-Type-1-Proxmox/screenshots/14-proxmox-system-configuration.png)
+![Step 7: System Configuration Verification](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/14-proxmox-system-configuration.png)
 *Step 7: Verifying allocated 2 vCPU and 2.0 GiB memory via `lscpu` and `free -h`.*
 
 ---
@@ -222,7 +229,7 @@ sysbench --version
 sysbench cpu --cpu-max-prime=20000 run
 ```
 
-![Step 8: Sysbench Benchmark Result](./Part-A-Type-1-Proxmox/screenshots/15-proxmox-sysbench-result.png)
+![Step 8: Sysbench Benchmark Result](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/15-proxmox-sysbench-result.png)
 *Step 8: Benchmark output of `sysbench cpu --cpu-max-prime=20000 run` on Proxmox VE.*
 
 ### Measured Sysbench Performance Data (Proxmox VE):
@@ -239,19 +246,19 @@ sysbench cpu --cpu-max-prime=20000 run
 ## 9. Resource Monitoring in Proxmox VE
 
 ### 9.1 Host Node Resource Summary
-![Step 9.1: Host Node Resource Summary](./Part-A-Type-1-Proxmox/screenshots/16-proxmox-resource-monitoring-node.png)
+![Step 9.1: Host Node Resource Summary](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/16-proxmox-resource-monitoring-node.png)
 *Step 9.1: Proxmox bare-metal host node resource overview.*
 
 ### 9.2 Virtual Machine Resource Summary
-![Step 9.2: VM Resource Summary](./Part-A-Type-1-Proxmox/screenshots/17-proxmox-resource-monitoring-vm.png)
+![Step 9.2: VM Resource Summary](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/17-proxmox-resource-monitoring-vm.png)
 *Step 9.2: Proxmox VM summary dashboard showing 0.75% CPU load, 1.76 GB RAM usage, and 20 GB storage.*
 
 ### 9.3 CPU Utilization Graph
-![Step 9.3: CPU Utilization Graph](./Part-A-Type-1-Proxmox/screenshots/18-proxmox-resource-monitoring-cpu.png)
+![Step 9.3: CPU Utilization Graph](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/18-proxmox-resource-monitoring-cpu.png)
 *Step 9.3: Real-time CPU utilization spike corresponding to the active Sysbench workload execution.*
 
 ### 9.4 Memory Usage Graph
-![Step 9.4: Memory Usage Graph](./Part-A-Type-1-Proxmox/screenshots/19-proxmox-resource-monitoring-ram.png)
+![Step 9.4: Memory Usage Graph](./Experiment-1/Part-A-Type-1-Proxmox/screenshots/19-proxmox-resource-monitoring-ram.png)
 *Step 9.4: Stable memory utilization curve throughout the benchmarking lifecycle.*
 
 ---
@@ -281,7 +288,7 @@ sysbench cpu --cpu-max-prime=20000 run
 ## 1. Launching VMware Workstation
 VMware Workstation is a Type-2 (hosted) hypervisor running on top of Windows 11.
 
-![Step 1: Launching VMware Workstation](./Part-B-Type-2-VMware/screenshots/01-vmware-launch.png)
+![Step 1: Launching VMware Workstation](./Experiment-1/Part-B-Type-2-VMware/screenshots/01-vmware-launch.png)
 *Step 1: VMware Workstation Pro home screen.*
 
 ---
@@ -291,37 +298,37 @@ VMware Workstation is a Type-2 (hosted) hypervisor running on top of Windows 11.
 ### Step 2.1: Selecting Configuration Type
 Select **Typical (recommended)** configuration:
 
-![Step 2.1: Selecting Typical Configuration](./Part-B-Type-2-VMware/screenshots/02-vmware-wizard-typical.png)
+![Step 2.1: Selecting Typical Configuration](./Experiment-1/Part-B-Type-2-VMware/screenshots/02-vmware-wizard-typical.png)
 *Step 2.1: Selecting Typical VM creation wizard.*
 
 ### Step 2.2: Selecting Installation Media (ISO)
 Browse and select the Ubuntu 64-bit ISO image:
 
-![Step 2.2: Selecting Ubuntu ISO](./Part-B-Type-2-VMware/screenshots/03-vmware-select-iso.png)
+![Step 2.2: Selecting Ubuntu ISO](./Experiment-1/Part-B-Type-2-VMware/screenshots/03-vmware-select-iso.png)
 *Step 2.2: Selecting Ubuntu installer ISO image.*
 
 ### Step 2.3: Easy Install Information
 Configure user credentials and full name:
 
-![Step 2.3: Easy Install Information](./Part-B-Type-2-VMware/screenshots/04-vmware-easy-install-info.png)
+![Step 2.3: Easy Install Information](./Experiment-1/Part-B-Type-2-VMware/screenshots/04-vmware-easy-install-info.png)
 *Step 2.3: Configuring user credentials.*
 
 ### Step 2.4: Naming the Virtual Machine
 Set VM name as `Ubuntu 64-bit` and specify directory path:
 
-![Step 2.4: Naming the Virtual Machine](./Part-B-Type-2-VMware/screenshots/05-vmware-name-vm.png)
+![Step 2.4: Naming the Virtual Machine](./Experiment-1/Part-B-Type-2-VMware/screenshots/05-vmware-name-vm.png)
 *Step 2.4: Specifying the VM name and storage location.*
 
 ### Step 2.5: Specifying Virtual Disk Capacity
 Set disk size to **20.0 GB**:
 
-![Step 2.5: Specifying Disk Capacity](./Part-B-Type-2-VMware/screenshots/06-vmware-specify-disk.png)
+![Step 2.5: Specifying Disk Capacity](./Experiment-1/Part-B-Type-2-VMware/screenshots/06-vmware-specify-disk.png)
 *Step 2.5: Configuring 20 GB virtual disk capacity.*
 
 ### Step 2.6: Hardware Configuration Summary
 Review the configured parameters (20 GB Disk, 2 CPU Cores, NAT Adapter):
 
-![Step 2.6: Hardware Configuration Summary](./Part-B-Type-2-VMware/screenshots/07-vmware-vm-configuration.png)
+![Step 2.6: Hardware Configuration Summary](./Experiment-1/Part-B-Type-2-VMware/screenshots/07-vmware-vm-configuration.png)
 *Step 2.6: Ready to create VM configuration summary.*
 
 ---
@@ -329,28 +336,28 @@ Review the configured parameters (20 GB Disk, 2 CPU Cores, NAT Adapter):
 ## 3. Powering On and Installing Ubuntu
 
 ### Step 3.1: Powering On the Virtual Machine
-![Step 3.1: Powering On VM](./Part-B-Type-2-VMware/screenshots/08-vmware-booting.png)
+![Step 3.1: Powering On VM](./Experiment-1/Part-B-Type-2-VMware/screenshots/08-vmware-booting.png)
 *Step 3.1: Initial boot screen in VMware Workstation.*
 
 ### Step 3.2: Complete Ubuntu Installation Workflow
 
 | Step | Installation Action | Screenshot Evidence |
 | :---: | :--- | :---: |
-| **Welcome** | Language selection | ![Welcome](./Part-B-Type-2-VMware/screenshots/09-vmware-ubuntu-welcome.png) |
-| **Accessibility** | Accessibility settings | ![Accessibility](./Part-B-Type-2-VMware/screenshots/10-vmware-ubuntu-accessibility.png) |
-| **Keyboard** | Keyboard layout setup | ![Keyboard](./Part-B-Type-2-VMware/screenshots/11-vmware-ubuntu-keyboard.png) |
-| **Install Type** | Interactive installation option | ![Install Type](./Part-B-Type-2-VMware/screenshots/12-vmware-ubuntu-install-type.png) |
-| **Applications** | Default app bundle selection | ![Apps](./Part-B-Type-2-VMware/screenshots/13-vmware-ubuntu-apps-selection.png) |
-| **Drivers** | Proprietary codecs & drivers | ![Drivers](./Part-B-Type-2-VMware/screenshots/14-vmware-ubuntu-software-drivers.png) |
-| **Disk Setup** | Virtual disk partitioning (`sda`) | ![Disk Setup](./Part-B-Type-2-VMware/screenshots/15-vmware-ubuntu-disk-partitioning.png) |
-| **User Account** | Setting username & password | ![User Account](./Part-B-Type-2-VMware/screenshots/16-vmware-ubuntu-user-account.png) |
-| **Timezone** | Timezone configuration | ![Timezone](./Part-B-Type-2-VMware/screenshots/17-vmware-ubuntu-timezone.png) |
-| **Review** | Reviewing disk & OS choices | ![Review](./Part-B-Type-2-VMware/screenshots/18-vmware-ubuntu-ready-to-install.png) |
-| **Installing** | Base system package setup | ![Installing](./Part-B-Type-2-VMware/screenshots/19-vmware-ubuntu-installing-system.png) |
-| **Copying** | Copying files to virtual storage | ![Copying](./Part-B-Type-2-VMware/screenshots/20-vmware-ubuntu-copying-files.png) |
-| **Complete** | Installation complete prompt | ![Complete](./Part-B-Type-2-VMware/screenshots/21-vmware-ubuntu-install-complete.png) |
-| **Summary** | Partition and configuration review | ![Summary](./Part-B-Type-2-VMware/screenshots/22-vmware-ubuntu-review-choices.png) |
-| **Slides** | Ubuntu features overview slide | ![Slides](./Part-B-Type-2-VMware/screenshots/23-vmware-ubuntu-install-slides.png) |
+| **Welcome** | Language selection | ![Welcome](./Experiment-1/Part-B-Type-2-VMware/screenshots/09-vmware-ubuntu-welcome.png) |
+| **Accessibility** | Accessibility settings | ![Accessibility](./Experiment-1/Part-B-Type-2-VMware/screenshots/10-vmware-ubuntu-accessibility.png) |
+| **Keyboard** | Keyboard layout setup | ![Keyboard](./Experiment-1/Part-B-Type-2-VMware/screenshots/11-vmware-ubuntu-keyboard.png) |
+| **Install Type** | Interactive installation option | ![Install Type](./Experiment-1/Part-B-Type-2-VMware/screenshots/12-vmware-ubuntu-install-type.png) |
+| **Applications** | Default app bundle selection | ![Apps](./Experiment-1/Part-B-Type-2-VMware/screenshots/13-vmware-ubuntu-apps-selection.png) |
+| **Drivers** | Proprietary codecs & drivers | ![Drivers](./Experiment-1/Part-B-Type-2-VMware/screenshots/14-vmware-ubuntu-software-drivers.png) |
+| **Disk Setup** | Virtual disk partitioning (`sda`) | ![Disk Setup](./Experiment-1/Part-B-Type-2-VMware/screenshots/15-vmware-ubuntu-disk-partitioning.png) |
+| **User Account** | Setting username & password | ![User Account](./Experiment-1/Part-B-Type-2-VMware/screenshots/16-vmware-ubuntu-user-account.png) |
+| **Timezone** | Timezone configuration | ![Timezone](./Experiment-1/Part-B-Type-2-VMware/screenshots/17-vmware-ubuntu-timezone.png) |
+| **Review** | Reviewing disk & OS choices | ![Review](./Experiment-1/Part-B-Type-2-VMware/screenshots/18-vmware-ubuntu-ready-to-install.png) |
+| **Installing** | Base system package setup | ![Installing](./Experiment-1/Part-B-Type-2-VMware/screenshots/19-vmware-ubuntu-installing-system.png) |
+| **Copying** | Copying files to virtual storage | ![Copying](./Experiment-1/Part-B-Type-2-VMware/screenshots/20-vmware-ubuntu-copying-files.png) |
+| **Complete** | Installation complete prompt | ![Complete](./Experiment-1/Part-B-Type-2-VMware/screenshots/21-vmware-ubuntu-install-complete.png) |
+| **Summary** | Partition and configuration review | ![Summary](./Experiment-1/Part-B-Type-2-VMware/screenshots/22-vmware-ubuntu-review-choices.png) |
+| **Slides** | Ubuntu features overview slide | ![Slides](./Experiment-1/Part-B-Type-2-VMware/screenshots/23-vmware-ubuntu-install-slides.png) |
 
 ---
 
@@ -360,35 +367,35 @@ Review the configured parameters (20 GB Disk, 2 CPU Cores, NAT Adapter):
 ```bash
 hostnamectl
 ```
-![Step 4.1: Hostnamectl Output](./Part-B-Type-2-VMware/screenshots/24-vmware-ubuntu-running-hostnamectl.png)
+![Step 4.1: Hostnamectl Output](./Experiment-1/Part-B-Type-2-VMware/screenshots/24-vmware-ubuntu-running-hostnamectl.png)
 *Step 4.1: `hostnamectl` showing Ubuntu 24.04 LTS on VMware Virtual Platform.*
 
 ### 4.2 CPU Architecture & Core Allocation
 ```bash
 lscpu
 ```
-![Step 4.2: lscpu Output](./Part-B-Type-2-VMware/screenshots/25-vmware-lscpu.png)
+![Step 4.2: lscpu Output](./Experiment-1/Part-B-Type-2-VMware/screenshots/25-vmware-lscpu.png)
 *Step 4.2: `lscpu` verifying 2 vCPU on AMD Ryzen 5 5600H processor.*
 
 ### 4.3 Memory (RAM) Allocation
 ```bash
 free -h
 ```
-![Step 4.3: free -h Output](./Part-B-Type-2-VMware/screenshots/26-vmware-free-memory.png)
+![Step 4.3: free -h Output](./Experiment-1/Part-B-Type-2-VMware/screenshots/26-vmware-free-memory.png)
 *Step 4.3: `free -h` verifying system memory allocation.*
 
 ### 4.4 Virtual Disk Space
 ```bash
 df -h
 ```
-![Step 4.4: df -h Output](./Part-B-Type-2-VMware/screenshots/27-vmware-disk-df.png)
+![Step 4.4: df -h Output](./Experiment-1/Part-B-Type-2-VMware/screenshots/27-vmware-disk-df.png)
 *Step 4.4: `df -h` inspecting virtual disk partitions.*
 
 ### 4.5 Live System Process Monitoring
 ```bash
 top
 ```
-![Step 4.5: top Output](./Part-B-Type-2-VMware/screenshots/28-vmware-top-monitoring.png)
+![Step 4.5: top Output](./Experiment-1/Part-B-Type-2-VMware/screenshots/28-vmware-top-monitoring.png)
 *Step 4.5: `top` displaying live CPU task execution.*
 
 ---
@@ -399,28 +406,28 @@ top
 ```bash
 sudo apt update
 ```
-![Step 5.1: Package Update](./Part-B-Type-2-VMware/screenshots/29-vmware-apt-update.png)
+![Step 5.1: Package Update](./Experiment-1/Part-B-Type-2-VMware/screenshots/29-vmware-apt-update.png)
 *Step 5.1: Updating package repository indexes.*
 
 ### 5.2 Installing Sysbench
 ```bash
 sudo apt install sysbench -y
 ```
-![Step 5.2: Install Sysbench](./Part-B-Type-2-VMware/screenshots/30-vmware-apt-install-sysbench.png)
+![Step 5.2: Install Sysbench](./Experiment-1/Part-B-Type-2-VMware/screenshots/30-vmware-apt-install-sysbench.png)
 *Step 5.2: Installing Sysbench benchmarking package.*
 
 ### 5.3 Verifying Sysbench Version
 ```bash
 sysbench --version
 ```
-![Step 5.3: Verify Version](./Part-B-Type-2-VMware/screenshots/31-vmware-sysbench-version.png)
+![Step 5.3: Verify Version](./Experiment-1/Part-B-Type-2-VMware/screenshots/31-vmware-sysbench-version.png)
 *Step 5.3: Sysbench version confirmation (`sysbench 1.0.20`).*
 
 ### 5.4 Executing CPU Performance Benchmark
 ```bash
 sysbench cpu --cpu-max-prime=20000 run
 ```
-![Step 5.4: Sysbench Benchmark Result](./Part-B-Type-2-VMware/screenshots/32-vmware-sysbench-result.png)
+![Step 5.4: Sysbench Benchmark Result](./Experiment-1/Part-B-Type-2-VMware/screenshots/32-vmware-sysbench-result.png)
 *Step 5.4: Terminal output of `sysbench cpu --cpu-max-prime=20000 run` on VMware Workstation.*
 
 ### Measured Sysbench Performance Data (VMware Workstation):
@@ -437,7 +444,7 @@ sysbench cpu --cpu-max-prime=20000 run
 ## 6. VMware Virtual Machine Settings Inspection
 Access **VM -> Settings** to verify configured virtual hardware devices:
 
-![Step 6: VMware Settings](./Part-B-Type-2-VMware/screenshots/33-vmware-virtual-machine-settings.png)
+![Step 6: VMware Settings](./Experiment-1/Part-B-Type-2-VMware/screenshots/33-vmware-virtual-machine-settings.png)
 *Step 6: VMware Workstation Virtual Machine Settings dialog.*
 
 ---
@@ -486,7 +493,7 @@ Access **VM -> Settings** to verify configured virtual hardware devices:
 
 ## Official Laboratory Comparison Evidence
 
-![Official Hypervisor Performance Comparison](./Comparison/screenshots/01-hypervisor-performance-comparison.png)
+![Official Hypervisor Performance Comparison](./Experiment-1/Comparison/screenshots/01-hypervisor-performance-comparison.png)
 *Figure: Empirical comparison table captured from the completed benchmark analysis.*
 
 ---
