@@ -48,19 +48,23 @@ sysbench cpu --cpu-max-prime=20000 run
 ### Architectural Flowchart
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph Type1["Type-1 Bare-Metal Architecture (Proxmox VE)"]
+        direction TB
         H1["Physical Server Hardware (CPU, RAM, Disk)"] --> P1["Proxmox VE Hypervisor (KVM Kernel)"]
         P1 --> VM1["Ubuntu 24.04 VM (b1-t1)"]
         VM1 --> S1["Sysbench CPU Benchmark: 1,749.16 Events/sec"]
     end
 
     subgraph Type2["Type-2 Hosted Architecture (VMware Workstation)"]
+        direction TB
         H2["Physical Host Hardware (AMD Ryzen 5 5600H)"] --> OS2["Host OS (Windows 11)"]
         OS2 --> VMW["VMware Workstation Pro"]
         VMW --> VM2["Ubuntu 24.04 VM"]
         VM2 --> S2["Sysbench CPU Benchmark: 707.43 Events/sec"]
     end
+
+    Type1 -->|Comparative Benchmark Evaluation| Type2
 ```
 
 ---
@@ -493,8 +497,13 @@ Access **VM -> Settings** to verify configured virtual hardware devices:
 
 ## Official Laboratory Comparison Evidence
 
-![Official Hypervisor Performance Comparison](./Experiment-1/Comparison/screenshots/01-hypervisor-performance-comparison.png)
-*Figure: Empirical comparison table captured from the completed benchmark analysis.*
+### 1. Side-by-Side Performance Comparison Data Table
+![Official Hypervisor Performance Comparison Table](./Experiment-1/Comparison/screenshots/01-hypervisor-performance-comparison.png)
+*Figure 1: Empirical comparison table captured from the completed benchmark analysis.*
+
+### 2. Hypervisor Performance Benchmark Graphs
+![Hypervisor Performance Benchmark Comparison Graph](./Experiment-1/Comparison/screenshots/02-hypervisor-performance-graph.png)
+*Figure 2: Graphical comparison of CPU Throughput (Events/sec), Total Processed Events, and Latency Distribution (ms).*
 
 ---
 
